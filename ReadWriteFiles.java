@@ -1,4 +1,4 @@
-//считка и запись в файл
+//чтение и запись файлов (для разных форматов)
 package com.example.semproj;
 
 import java.io.File;
