@@ -1,5 +1,5 @@
 //чтение и запись файлов (для разных форматов)
-package com.example.semproj;
+package com.example.proj;
 
 import java.io.File;
 import java.io.IOException;
