@@ -1,3 +1,4 @@
+//считка и запись в файл
 package com.example.semproj;
 
 import java.io.File;
