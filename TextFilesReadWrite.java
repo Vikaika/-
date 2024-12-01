@@ -1,3 +1,4 @@
+//чтение данных из текстового файла
 package com.example.proj;
 
 import java.io.File;
