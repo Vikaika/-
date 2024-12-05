@@ -19,5 +19,7 @@ public class XMLFilesReadWrite implements FileProcessing {
         /* parse() читает XML-документ и создаёт объект document,
         который содержит дерево элементов XML и содержит данные, полученные в результате парсинга */
         Document document = builderFactory.newDocumentBuilder().parse(file);
-
+        /* извлекаются все элементы с тегом <string>
+        и помещаются в объект NodeList */
+        NodeList stringNodeList = document.getElementsByTagName("string");
 }
