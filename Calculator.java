@@ -16,11 +16,11 @@ public class Calculator {
   //метод для вычисления выражения
   public String calculate(String expression) {
     String extra_space = sanitizeExpression(expression); //очищаем выражение от лишних пробелов и исправляем ошибки формата
-    if (isValidExpression(extra_space)) {            
-      convertToRPN(extra_space); //чтобы не отслеживать приоритеты операций во время вычислений
+    if (isValidExpression(extra_space)) {
+      to_RPN(extra_space); //чтобы не отслеживать приоритеты операций во время вычислений
       return " " + evaluate() + " "; //выполняем вычисления на основе выражения в RPN
     }
-    return expression;
+   return expression;
   }
 
 
