@@ -20,6 +20,10 @@ public class Calculator {
       convertToRPN(extra_space); //чтобы не отслеживать приоритеты операций во время вычислений
       return " " + evaluate() + " "; //выполняем вычисления на основе выражения в RPN
     }
+    return expression;
   }
 
+
+
+  
 }
