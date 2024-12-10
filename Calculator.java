@@ -16,6 +16,9 @@ public class Calculator {
   //метод для вычисления выражения
   public String calculate(String expression) {
     String extra_space = sanitizeExpression(expression); //очищаем выражение от лишних пробелов и исправляем ошибки формата
+    if (isValidExpression(extra_space)) {
+           
+        }
   }
 
 }
