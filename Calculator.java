@@ -13,4 +13,8 @@ public class Calculator {
   private static final Pattern double_operator = Pattern.compile("[/*\\-+^]{2}"); //поиск двух подряд идущих символа
   private static final Pattern digit = Pattern.compile("\\d+(\\.\\d+)?"); //поиск целые и дробные числа
 
+  //метод для вычисления выражения
+    public String calculate(String expression) {
+    }
+
 }
