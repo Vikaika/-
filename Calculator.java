@@ -14,7 +14,8 @@ public class Calculator {
   private static final Pattern digit = Pattern.compile("\\d+(\\.\\d+)?"); //поиск целые и дробные числа
 
   //метод для вычисления выражения
-    public String calculate(String expression) {
-    }
+  public String calculate(String expression) {
+    String extra_space = sanitizeExpression(expression); //очищаем выражение от лишних пробелов и исправляем ошибки формата
+  }
 
 }
