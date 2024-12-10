@@ -9,6 +9,7 @@ public class Calculator {
   private final Stack<Double> values = new Stack<>(); //стек для числовых значений
   private final Stack<String> operators = new Stack<>(); //стек для операторов
 
+  private static final Pattern operatorr = Pattern.compile("[/*\\-+^]"); //поиск одного из операторов
   private static final Pattern double_operator = Pattern.compile("[/*\\-+^]{2}"); //поиск двух подряд идущих символа
   private static final Pattern digit = Pattern.compile("\\d+(\\.\\d+)?"); //поиск целые и дробные числа
 
