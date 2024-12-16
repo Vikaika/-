@@ -57,5 +57,7 @@ public class Calculator {
         }
     }
 
+    private String clearing(String expression)
+
     
 }
