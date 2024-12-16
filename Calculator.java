@@ -33,6 +33,7 @@ public class Calculator {
                 values.push(Double.parseDouble(token));
             }
             else {
+                processOperator(token);
             }
 
         }
