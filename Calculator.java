@@ -51,7 +51,10 @@ public class Calculator {
             double first_val = values.pop();
             values.push(performOperation(first_val, second_val, operators.pop()));
         }
-        
+        //если оператор это не ")", добавляем его в стек
+        if (!operator.equals(")")) {
+            operators.push(operator);
+        }
     }
 
     
