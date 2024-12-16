@@ -128,6 +128,16 @@ public class Calculator {
         };
     }
 
+    //результат вычислений в виде строки
+    private String Result() {
+        //операции выполняются пока есть операторы для обработки
+        while (!operators.isEmpty()) {
+            double second = values.pop();
+            double first = values.pop();
+            values.push(PerformOperation(first, second, operators.pop()));
+        }
+        return String.format("%.2f", values.pop()); //строка с двумя знаками после запятой
+    }
 
     
     
