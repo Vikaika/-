@@ -14,9 +14,9 @@ public class Calculator {
     private static final Pattern numbers = Pattern.compile("\\d+(\\.\\d+)?"); //поиск целые и дробные числа
 
     //метод для вычисления выражения
-    public String calculate(String str) {
-        String extra_space = sanitizeExpression(str); //убираем лишние пробелы и исправляем ошибки формата
-        if (isValidExpression(extra_space)) {
+    public String Calculate(String str) {
+        String extra_space = Clearing(str); //убираем лишние пробелы и исправляем ошибки формата
+        if (ValidExpression(extra_space)) {
             RPN(extra_space);
             return " " + evaluate() + " "; //выполняем вычисления на основе выражения в RPN
         }
@@ -28,18 +28,18 @@ public class Calculator {
         StringTokenizer tokens = new StringTokenizer(str, "/*-+^()", true); //разбиваем строку на токены
         while (tokens.hasMoreTokens()) {
             String token = tokens.nextToken();
-            //eсли токен это число, то добавляем его в стек
+            //сли токен это число, то добавляем его в стек
             if (isNumber(token)) {
                 values.push(Double.parseDouble(token));
             }
             else {
-                processOperator(token);
+                ProcessOperator(token);
             }
         }
     }
 
     //метод для управления логикой вычисления выражений, учитывая приоритет и порядок выполнения операций
-    private void processOperator(String operator) {
+    private void ProcessOperator(String operator) {
         //приоритет текущего оператора должен быть меньше или равен приоритету верхнего оператора в стеке
         while (!operators.isEmpty() && operationPriority(operator) <= operationPriority(operators.peek())) {
             //игнорируем ")"
@@ -56,9 +56,9 @@ public class Calculator {
             operators.push(operator);
         }
     }
-    
+
     //метод по очистке и подготовке выражения для вычисления
-    private String clearing(String expression) {
+    private String Clearing(String expression) {
         expression = expression.replaceAll(" ", ""); //удаляем все пробелы
         if (expression.charAt(0) == '-') expression = "0" + expression; //если первый символ "-"
         return expression.replaceAll("\\(-", "(0-")
@@ -67,6 +67,12 @@ public class Calculator {
                 .replaceAll("\\)(\\d)", ")*$1");
     }
 
+    //метод для определения является ли выражение корректным
+    private boolean ValidExpression(String expression) {
+        return PlacingBrackets(expression) &&
+                !double_operator.matcher(expression).find() && //отсутствие двойных операторов
+                CountOperator(expression);
+    }
 
-    
+
 }
