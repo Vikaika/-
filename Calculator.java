@@ -56,8 +56,17 @@ public class Calculator {
             operators.push(operator);
         }
     }
+    
+    //метод по очистке и подготовке выражения для вычисления
+    private String clearing(String expression) {
+        expression = expression.replaceAll(" ", ""); //удаляем все пробелы
+        if (expression.charAt(0) == '-') expression = "0" + expression; //если первый символ "-"
+        return expression.replaceAll("\\(-", "(0-")
+                .replaceAll("(\\d)\\(", "$1*(")
+                .replaceAll("\\)\\(", ")*(")
+                .replaceAll("\\)(\\d)", ")*$1");
+    }
 
-    private String clearing(String expression)
 
     
 }
