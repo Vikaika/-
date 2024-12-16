@@ -112,4 +112,26 @@ public class Calculator {
         };
     }
 
+    //метод для выполнения операций
+    private double PerformOperation(double a, double b, String operation) {
+        switch (operation) {
+            case "+":
+                return a + b;
+            case "-":
+                return a - b;
+            case "*":
+                return a * b;
+            case "/":
+                if (b == 0) throw new IllegalArgumentException("Cannot divide by zero");
+                return a / b;
+            case "^":
+                return Math.pow(a, b);
+            default:
+                throw new IllegalArgumentException("Unknown operation: " + operation);
+        }
+    }
+
+
+    
+    
 }
