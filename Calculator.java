@@ -91,6 +91,15 @@ public class Calculator {
         return balance == 0;
     }
 
+    //метод для проверки корректного кол-ва операторов
+    private boolean CountOperator(String expression) {
+        expression = expression.replaceAll(" ", ""); //удаление пробелов
+        String[] parts = expression.split("[+\\-*/^]");
+        int digitCount = parts.length; //кол-во чисел
+        int operatorCount = expression.length() - expression.replaceAll("[+\\-*/^]", "").length(); //кол-во операторов
+
+        return digitCount > operatorCount; //true, если чисел больше, чем операторов
+    }
     
 
 }
