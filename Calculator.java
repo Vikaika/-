@@ -28,6 +28,7 @@ public class Calculator {
         StringTokenizer tokens = new StringTokenizer(str, "/*-+^()", true); //разбиваем строку на токены
         while (tokens.hasMoreTokens()) {
             String token = tokens.nextToken();
+            //eсли токен это число, то добавляем его в стек
             if (isNumber(token)) {
                 values.push(Double.parseDouble(token));
             }
