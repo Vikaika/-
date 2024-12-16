@@ -139,6 +139,9 @@ public class Calculator {
         return String.format("%.2f", values.pop()); //строка с двумя знаками после запятой
     }
 
-    
+    //является ли эелемент числом
+    private boolean Number(String token) {
+        return token.matches("\\d+(\\.\\d+)?");
+    }
     
 }
