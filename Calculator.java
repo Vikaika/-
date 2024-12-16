@@ -100,6 +100,16 @@ public class Calculator {
 
         return digitCount > operatorCount; //true, если чисел больше, чем операторов
     }
-    
+
+    //метод для приоритета операций
+    private int OperationPriority(String operation) {
+        return switch (operation) {
+            case "(", ")" -> 1;
+            case "+", "-" -> 2;
+            case "/", "*" -> 3;
+            case "^" -> 4;
+            default -> -1;
+        };
+    }
 
 }
