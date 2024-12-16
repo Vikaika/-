@@ -74,5 +74,23 @@ public class Calculator {
                 CountOperator(expression);
     }
 
+    //метод для проверки сбалансированности скобок
+    private boolean PlacingBrackets(String expression) {
+        int balance = 0;
+        for (char ch : expression.toCharArray()) {
+            if (ch == '(') {
+                balance++;
+            }
+            if (ch == ')') {
+                balance--;
+            }
+            if (balance < 0) {
+                return false;
+            }
+        }
+        return balance == 0;
+    }
+
+    
 
 }
