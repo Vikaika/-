@@ -40,7 +40,18 @@ public class Calculator {
 
     //метод для управления логикой вычисления выражений, учитывая приоритет и порядок выполнения операций
     private void processOperator(String operator) {
-    
+        //приоритет текущего оператора должен быть меньше или равен приоритету верхнего оператора в стеке
+        while (!operators.isEmpty() && operationPriority(operator) <= operationPriority(operators.peek())) {
+            //игнорируем ")"
+            if (operator.equals(")")) {
+                operators.pop();
+                return;
+            }
+            double second_val = values.pop();
+            double first_val = values.pop();
+            values.push(performOperation(first_val, second_val, operators.pop()));
+        }
+        
     }
 
     
