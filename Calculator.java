@@ -35,7 +35,13 @@ public class Calculator {
             else {
                 processOperator(token);
             }
-
         }
     }
+
+    //метод для управления логикой вычисления выражений, учитывая приоритет и порядок выполнения операций
+    private void processOperator(String operator) {
+    
+    }
+
+    
 }
