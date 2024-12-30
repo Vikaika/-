@@ -39,5 +39,17 @@ public class Window extends JFrame {
         inputArea.setFont(new Font("Calibri", Font.PLAIN, 14));
         add(inputArea);
         inputArea.setEditable(false); // текстовуая область как не редактируемая со стороны пользователя
+
+        //кнопка чтения
+        JButton read = new JButton("Read");
+        read.setBackground(new Color(221, 160, 221));
+        read.setFont(new Font("Calibri", Font.BOLD, 14));
+        add(read);
+
+        //кнопка записи
+        JButton write = new JButton("Write");
+        write.setBackground(new Color(221, 160, 221));
+        write.setFont(new Font("Calibri", Font.BOLD, 14));
+        add(write);
     }
 }
