@@ -62,5 +62,13 @@ public class Window extends JFrame {
         ButtonGroup writeGroup = new ButtonGroup();
         writeGroup.add(txtWrite);
         writeGroup.add(xmlWrite);
+
+        outputArea = new JTextArea(); //объект JTextArea позволяет отображать и вводить многострочный текст
+        outputArea.setBackground(new Color(255, 182, 193));
+        outputArea.setFont(new Font("Calibri", Font.PLAIN, 14));
+        add(outputArea);
+        outputArea.setEditable(false);
+
+        
     }
 }
