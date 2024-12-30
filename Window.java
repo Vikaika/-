@@ -38,7 +38,7 @@ public class Window extends JFrame {
         inputArea.setBackground(new Color(255, 228, 225)); // молочный цвет
         inputArea.setFont(new Font("Calibri", Font.PLAIN, 14));
         add(inputArea);
-        inputArea.setEditable(false); // текстовуая область как не редактируемая со стороны пользователя
+        inputArea.setEditable(false); // текстовая область как не редактируемая со стороны пользователя
 
         //кнопка чтения
         JButton read = new JButton("Read");
@@ -58,7 +58,9 @@ public class Window extends JFrame {
         txtWrite.setSelected(true);
         JRadioButton xmlWrite = new JRadioButton(".xml");
         add(xmlWrite);
-
-
+        //группа гарантирует, что только одна из радиокнопок может быть выбрана в данный момент
+        ButtonGroup writeGroup = new ButtonGroup();
+        writeGroup.add(txtWrite);
+        writeGroup.add(xmlWrite);
     }
 }
