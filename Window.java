@@ -101,6 +101,23 @@ public class Window extends JFrame {
             showOutput(); //отображение результатов вычислений
         });
 
-        
+        //обработка события к кнопке write
+        write.addActionListener(e -> {
+            try {
+                String dir = "D:\\ПП (Java)\\IProject\\IProject\\com\\example\\proj\\outputs";
+                String fileName = JOptionPane.showInputDialog("Enter file name you want to save result to ");
+                //предотвращаем попытку сохранить файл без имени
+                if (fileName == null || fileName.isEmpty()) throw new IllegalArgumentException("File name is empty.");
+                //выбор в каком формате сохраняем данные в переменной strings
+                if (txtWrite.isSelected()) {
+                    writeToTXT(dir, fileName + ".txt", strings);
+                } else if (xmlWrite.isSelected()) {
+                    writeToXML(dir, fileName + ".xml", strings);
+                }
+                JOptionPane.showMessageDialog(null, "File was written successfully!");
+            } catch (IOException | ParserConfigurationException | TransformerException | IllegalArgumentException exception) {
+                JOptionPane.showMessageDialog(null, exception.getMessage(), "Error!", JOptionPane.ERROR_MESSAGE);
+            }
+        });        
     }
 }
