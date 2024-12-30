@@ -69,6 +69,38 @@ public class Window extends JFrame {
         add(outputArea);
         outputArea.setEditable(false);
 
+        //обработка событий к кнопке read
+        read.addActionListener(e -> {
+            //выбираем файлы с диска
+            JFileChooser fileChooser = new JFileChooser("D:\\ПП (Java)\\IProject\\IProject\\com\\example\\proj\\inputs");
+            try {
+                if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+                    File selectedFile = fileChooser.getSelectedFile();
+                    //Устанавливаем стратегию чтения/записи файлов в зависимости от формата
+                    if (selectedFile.getName().endsWith("txt")) {
+                        setStrategy(new TextFilesReadWrite());
+                    }
+                    else if (selectedFile.getName().endsWith("xml")) {
+                        setStrategy(new XMLFilesReadWrite());
+                    }
+                    else {
+                        throw new IllegalArgumentException("Unsupported file format.");
+                    }
+                    strings = method.getStringArray(selectedFile); //читаем данные из выбранного файла и возвращаем массив строк
+                }
+            }
+            //неподдержанный формат файла
+            catch (IllegalArgumentException exception) {
+                JOptionPane.showMessageDialog(null, "Choose a correct file.", "Illegal file format!", JOptionPane.ERROR_MESSAGE);
+            }
+            catch (IOException | ParserConfigurationException | SAXException exception) {
+                JOptionPane.showMessageDialog(null, exception.getMessage(), "Error!", JOptionPane.ERROR_MESSAGE);
+            }
+            showInput(); //отображение данных из файла
+            strings = solveProblems(strings);
+            showOutput(); //отображение результатов вычислений
+        });
+
         
     }
 }
