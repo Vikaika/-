@@ -51,5 +51,14 @@ public class Window extends JFrame {
         write.setBackground(new Color(221, 160, 221));
         write.setFont(new Font("Calibri", Font.BOLD, 14));
         add(write);
+
+        //создание радиокнопок для выбора формата записи
+        JRadioButton txtWrite = new JRadioButton(".txt");
+        add(txtWrite);
+        txtWrite.setSelected(true);
+        JRadioButton xmlWrite = new JRadioButton(".xml");
+        add(xmlWrite);
+
+
     }
 }
