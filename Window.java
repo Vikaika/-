@@ -149,5 +149,25 @@ public class Window extends JFrame {
         transformer.transform(new DOMSource(doc), new StreamResult(new File(dir + fileName)));
     }
 
+
+    //метод - вычисление матем выражений
+    public ArrayList<String> solveProblems(ArrayList<String> str) {
+        //ищем матем выражения
+        Pattern pat = Pattern.compile("(\\s*-?\\s*(\\(*\\s*(-?\\s*\\d+(\\.\\d+)?)\\s*\\)*\\s*)*[-+*/^](\\s*\\(*\\s*(-?\\s*\\d+(\\.\\d+)?)\\s*\\)*\\s*)+)+");
+        String found_str; //найденная подстрока, соответствующая регулярному выражению
+        String new_str; //результат вычисления
+        for (int i = 0; i < str.size(); i++) {
+            //для поиска соответствий в текущей строке
+            Matcher matcher = pat.matcher(str.get(i));
+            while (matcher.find()) {
+                found_str = str.get(i).substring(matcher.start(), matcher.end());
+                new_str = calculator.Calculate(found_str); // Вызов метода Calculate на экземпляре калькулятора
+                str.set(i, str.get(i).replace(found_str, new_str));
+            }
+        }
+        return str;
+    }
+
+
     
 }
