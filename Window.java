@@ -120,4 +120,16 @@ public class Window extends JFrame {
             }
         });        
     }
+
+    //запись списка строк в текстовый файл
+    public static void writeToTXT(String dir, String Fname, ArrayList<String> str) throws IOException {
+        try (FileWriter fileWriter = new FileWriter(dir + Fname)) {
+            for (String string : str) {
+                fileWriter.write(string);
+                fileWriter.write("\n");
+            }
+        }
+    }
+
+
 }
