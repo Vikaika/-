@@ -131,5 +131,23 @@ public class Window extends JFrame {
         }
     }
 
+    //метод - запись списка строк в XML файл
+    public static void writeToXML(String dir, String fileName, ArrayList<String> str) throws ParserConfigurationException, TransformerException {
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        factory.setNamespaceAware(true);
+        Document doc = factory.newDocumentBuilder().newDocument();
+        Element root = doc.createElement("text");
+        doc.appendChild(root);
+        for (String string : str) {
+            Element element = doc.createElement("string");
+            element.setTextContent(string);
+            root.appendChild(element);
+        }
+        Transformer transformer = TransformerFactory.newInstance().newTransformer();
+        transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+        transformer.transform(new DOMSource(doc), new StreamResult(new File(dir + fileName)));
+    }
 
+    
 }
