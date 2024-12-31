@@ -168,6 +168,34 @@ public class Window extends JFrame {
         return str;
     }
 
+   private void Strategy(FileProcessing fileProcessing) {
+        method = fileProcessing;
+    }
 
+    //метод - отображение входных данных в текстовой области inputArea
+    private void showInput() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String str : strings) {
+            stringBuilder.append(str).append("\n");
+        }
+        inputArea.setText(stringBuilder.toString());
+    }
+
+    //метод - отображение выходных данных в текстовой области outputArea
+    private void showOutput() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String string : strings) {
+            stringBuilder.append(string).append("\n");
+        }
+        outputArea.setText(stringBuilder.toString());
+    }
     
+    //запуск приложения Swing
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            Window window = new Window("Pink GUI");
+            window.setSize(400, 300);
+            window.setVisible(true);
+        });
+    }
 }
