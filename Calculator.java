@@ -2,12 +2,20 @@ package com.example.proj;
 
 import java.util.Stack;
 import java.util.StringTokenizer;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Calculator {
     private final Stack<Double> values = new Stack<>(); //стек для числовых значений
     private final Stack<String> operators = new Stack<>(); //стек для операторов
+
+
+    public Stack<Double> getValues() {
+        return values;
+    }
+
+    public Stack<String> getOperators() {
+        return operators;
+    }
 
     private static final Pattern one_operator = Pattern.compile("[/*\\-+^]"); //поиск одного из операторов
     private static final Pattern double_operator = Pattern.compile("[/*\\-+^]{2}"); //поиск двух подряд идущих символа
@@ -18,7 +26,7 @@ public class Calculator {
         String extra_space = Clearing(str); //убираем лишние пробелы и исправляем ошибки формата
         if (ValidExpression(extra_space)) {
             RPN(extra_space);
-            return " " + evaluate() + " "; //выполняем вычисления на основе выражения в RPN
+            return " " + Result() + " "; //выполняем вычисления на основе выражения в RPN
         }
         return str;
     }
@@ -29,7 +37,7 @@ public class Calculator {
         while (tokens.hasMoreTokens()) {
             String token = tokens.nextToken();
             //сли токен это число, то добавляем его в стек
-            if (isNumber(token)) {
+            if (Number(token)) {
                 values.push(Double.parseDouble(token));
             }
             else {
@@ -41,7 +49,7 @@ public class Calculator {
     //метод для управления логикой вычисления выражений, учитывая приоритет и порядок выполнения операций
     private void ProcessOperator(String operator) {
         //приоритет текущего оператора должен быть меньше или равен приоритету верхнего оператора в стеке
-        while (!operators.isEmpty() && operationPriority(operator) <= operationPriority(operators.peek())) {
+        while (!operators.isEmpty() && OperationPriority(operator) <= OperationPriority(operators.peek())) {
             //игнорируем ")"
             if (operator.equals(")")) {
                 operators.pop();
@@ -49,7 +57,7 @@ public class Calculator {
             }
             double second_val = values.pop();
             double first_val = values.pop();
-            values.push(performOperation(first_val, second_val, operators.pop()));
+            values.push(PerformOperation(first_val, second_val, operators.pop()));
         }
         //если оператор это не ")", добавляем его в стек
         if (!operator.equals(")")) {
@@ -69,8 +77,15 @@ public class Calculator {
 
     //метод для определения является ли выражение корректным
     private boolean ValidExpression(String expression) {
+        expression = expression.replaceAll(" ", ""); // Удаляем пробелы
+        if (expression.isEmpty()) return false; // Пустое выражение
+
+        // Проверка на недопустимые символы
+        if (!expression.matches("[\\d+\\-*/^().]*")) return false;
+
+        // Проверка на сбалансированные скобки и количество операторов
         return PlacingBrackets(expression) &&
-                !double_operator.matcher(expression).find() && //отсутствие двойных операторов
+                !double_operator.matcher(expression).find() && // отсутствие двойных операторов
                 CountOperator(expression);
     }
 
@@ -98,7 +113,8 @@ public class Calculator {
         int digitCount = parts.length; //кол-во чисел
         int operatorCount = expression.length() - expression.replaceAll("[+\\-*/^]", "").length(); //кол-во операторов
 
-        return digitCount > operatorCount; //true, если чисел больше, чем операторов
+            // Возвращаем true, если чисел больше, чем операторов
+            return digitCount > operatorCount;
     }
 
     //метод для приоритета операций
@@ -128,7 +144,6 @@ public class Calculator {
         };
     }
 
-    //результат вычислений в виде строки
     private String Result() {
         //операции выполняются пока есть операторы для обработки
         while (!operators.isEmpty()) {
@@ -143,5 +158,4 @@ public class Calculator {
     private boolean Number(String token) {
         return token.matches("\\d+(\\.\\d+)?");
     }
-    
 }
